@@ -349,7 +349,8 @@ export default {
       height: "auto",
       width: "auto"
     },
-    title: undefined
+    title: undefined,
+    onClick: undefined
   },
   remove: {
     icon: eraser,

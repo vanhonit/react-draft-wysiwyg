@@ -70,7 +70,7 @@ class ImageControl extends Component {
   };
 
   render() {
-    const { config, translations } = this.props;
+    const { config, translations, onClick } = this.props;
     const { expanded } = this.state;
     const ImageComponent = config.component || LayoutComponent;
     return (
@@ -82,6 +82,7 @@ class ImageControl extends Component {
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
+        onClick={onClick}
       />
     );
   }

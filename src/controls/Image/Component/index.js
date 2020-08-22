@@ -329,11 +329,20 @@ class LayoutComponent extends Component {
     );
   }
 
+  onClick = () => {
+    const { onExpandEvent, onChange, config } = this.props;
+    const { onClick } = config;
+    if (onClick) {
+      onClick(onChange);
+    } else {
+      onExpandEvent();
+    }
+  }
+
   render() {
     const {
       config: { icon, className, title },
       expanded,
-      onExpandEvent,
       translations,
     } = this.props;
     return (
@@ -346,7 +355,7 @@ class LayoutComponent extends Component {
         <Option
           className={classNames(className)}
           value="unordered-list-item"
-          onClick={onExpandEvent}
+          onClick={this.onClick}
           title={title || translations['components.controls.image.image']}
         >
           <img src={icon} alt="" />
