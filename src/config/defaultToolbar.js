@@ -41,6 +41,7 @@ export default {
     "embedded",
     "emoji",
     "image",
+    "formula",
     "remove",
     "history"
   ],
@@ -367,7 +368,17 @@ export default {
     undo: { icon: undo, className: undefined, title: undefined },
     redo: { icon: redo, className: undefined, title: undefined },
     title: undefined
-  }
+  },
+  formula: {
+    icon: image,
+    className: undefined,
+    component: undefined,
+    popupClassName: undefined,
+    urlEnabled: true,
+    uploadCallback: undefined,
+    title: undefined,
+    onClick: undefined
+  },
 };
 
 /**

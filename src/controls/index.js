@@ -11,6 +11,7 @@ import emoji from "./Emoji";
 import image from "./Image";
 import remove from "./Remove";
 import history from "./History";
+import formula from "./Formula";
 
 export default {
   inline,
@@ -25,5 +26,6 @@ export default {
   emoji,
   image,
   remove,
-  history
+  history,
+  formula
 };
