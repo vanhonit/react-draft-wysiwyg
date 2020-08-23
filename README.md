@@ -1,7 +1,8 @@
 # React Draft Wysiwyg
+A Fork from https://jpuri.github.io/react-draft-wysiwyg.
 
 A Wysiwyg editor built using ReactJS and DraftJS libraries.
-[Demo Page](https://jpuri.github.io/react-draft-wysiwyg).
+[Demo Page](https://vanhonit.github.io/react-draft-wysiwyg).
 
 [![Build Status](https://travis-ci.org/jpuri/react-draft-wysiwyg.svg?branch=master)](https://travis-ci.org/jpuri/react-draft-wysiwyg)
 
