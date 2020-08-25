@@ -23,6 +23,7 @@ import undo from '../../images/undo.svg';
 import redo from '../../images/redo.svg';
 import subscript from '../../images/subscript.svg';
 import superscript from '../../images/superscript.svg';
+import formula from '../../images/formula.svg';
 
 /**
 * This is default toolbar configuration,
@@ -370,7 +371,7 @@ export default {
     title: undefined
   },
   formula: {
-    icon: image,
+    icon: formula,
     className: undefined,
     component: undefined,
     popupClassName: undefined,

@@ -1,5 +1,6 @@
 import Embedded from './Embedded';
 import getImageComponent from '../renderer/Image';
+import getKatexComponent from '../renderer/Katex';
 
 const getBlockRenderFunc = (config, customBlockRenderer) => (block) => {
   if (typeof customBlockRenderer === 'function') {
@@ -13,6 +14,11 @@ const getBlockRenderFunc = (config, customBlockRenderer) => (block) => {
       return {
         component: getImageComponent(config),
         editable: false,
+      };
+    } else if (entity && entity.type === 'KATEX') {
+      return {
+        component: getKatexComponent(config),
+        editable: false
       };
     } else if (entity && entity.type === 'EMBEDDED_LINK') {
       return {

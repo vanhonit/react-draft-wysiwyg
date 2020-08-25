@@ -27,6 +27,11 @@ module.exports = {
         loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
         include: path.resolve(__dirname, '../'),
       },
+      {
+        test: /\.(png|woff|woff2|eot|ttf)$/,
+        loaders: ['file-loader'],
+        include: path.resolve(__dirname, '../')
+      }
     ],
   },
 };

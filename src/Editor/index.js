@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Immutable from 'immutable';
 import {
   Editor,
+  DefaultDraftBlockRenderMap,
   EditorState,
   RichUtils,
   convertToRaw,
@@ -12,7 +14,7 @@ import {
 import {
   changeDepth,
   handleNewLine,
-  blockRenderMap,
+  // blockRenderMap,
   getCustomStyleMap,
   extractInlineStyle,
   getSelectedBlocksType,
@@ -30,11 +32,20 @@ import Controls from '../controls';
 import getLinkDecorator from '../decorators/Link';
 import getMentionDecorators from '../decorators/Mention';
 import getHashtagDecorator from '../decorators/HashTag';
+import getKatexDecorator from '../decorators/Katex';
 import getBlockRenderFunc from '../renderer';
 import defaultToolbar from '../config/defaultToolbar';
 import localeTranslations from '../i18n';
 import './styles.css';
 import '../../css/Draft.css';
+
+const blockRenderMap = Immutable.Map({
+  'atomic': {
+    element: 'div'
+  }
+});
+
+const extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(blockRenderMap);
 
 class WysiwygEditor extends Component {
   constructor(props) {
@@ -208,6 +219,7 @@ class WysiwygEditor extends Component {
   getCompositeDecorator = toolbar => {
     const decorators = [
       ...this.props.customDecorators,
+      // getKatexDecorator(),
       getLinkDecorator({
         showOpenOptionOnHover: toolbar.link.showOpenOptionOnHover,
       }),
@@ -224,6 +236,7 @@ class WysiwygEditor extends Component {
         })
       );
     }
+
     if (this.props.hashtag) {
       decorators.push(getHashtagDecorator(this.props.hashtag));
     }
@@ -458,7 +471,6 @@ class WysiwygEditor extends Component {
             onFocus={this.onToolbarFocus}
           >
             {toolbar.options.map((opt, index) => {
-              console.log(opt);
               const Control = Controls[opt];
               const config = toolbar[opt];
               if (opt === 'image' && uploadCallback) {
@@ -494,7 +506,7 @@ class WysiwygEditor extends Component {
             blockRendererFn={this.blockRendererFn}
             handleKeyCommand={this.handleKeyCommand}
             ariaLabel={ariaLabel || 'rdw-editor'}
-            blockRenderMap={blockRenderMap}
+            blockRenderMap={extendedBlockRenderMap}
             {...this.editorProps}
           />
         </div>

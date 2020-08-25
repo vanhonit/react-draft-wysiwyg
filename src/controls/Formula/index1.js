@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { RichUtils, EditorState, Modifier, AtomicBlockUtils } from 'draft-js';
+import { RichUtils, EditorState, Modifier } from 'draft-js';
 import {
   getSelectionText,
   getEntityRange,
@@ -110,20 +110,21 @@ class Formula extends Component {
       .getCurrentContent()
       .createEntity('KATEX', 'MUTABLE', entityData)
       .getLastCreatedEntityKey();
-    const newEditorState = AtomicBlockUtils.insertAtomicBlock(
-            editorState,
-            entityKey,
-            ' '
-          );
-  onChange(newEditorState);
-  this.doCollapse();
+    const contentState = Modifier.replaceText(
+      editorState.getCurrentContent(),
+      editorState.getSelection(),
+      formula,
+      editorState.getCurrentInlineStyle(),
+      entityKey
+    );
+    onChange(EditorState.push(editorState, contentState, 'insert-formula'));
+    this.doCollapse();
   }
 
 
   render() {
     const { config, translations } = this.props;
     const { expanded } = this.state;
-    const { link, selectionText } = this.getCurrentValues();
     const FormulaComponent = config.component || LayoutComponent;
     return (
       <FormulaComponent
