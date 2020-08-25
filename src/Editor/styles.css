@@ -33,3 +33,16 @@
   border-radius: 3px;
   padding: 1px 10px;
 }
+.rdw-atomic {
+  display: inline-block;
+}
+.rdw-align-left {
+  float: left
+}
+.rdw-align-right {
+  float: right
+}
+.rdw-align-center {
+  display: block;
+  text-align: center;
+}

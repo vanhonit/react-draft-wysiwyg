@@ -191,7 +191,7 @@ class WysiwygEditor extends Component {
       !readOnly &&
       !(
         getSelectedBlocksType(editorState) === 'atomic' &&
-        editorState.getSelection().isCollapsed
+        editorState.getSelection().isCollapsed()
       )
     ) {
       if (onEditorStateChange) {
@@ -369,13 +369,13 @@ class WysiwygEditor extends Component {
       editorState,
       toolbar: { inline },
     } = this.state;
-    if (inline && inline.options.indexOf(command) >= 0) {
+    // if (inline && inline.options.indexOf(command) >= 0) {
       const newState = RichUtils.handleKeyCommand(editorState, command);
       if (newState) {
         this.onChange(newState);
         return true;
       }
-    }
+    // }
     return false;
   };
 
@@ -437,7 +437,6 @@ class WysiwygEditor extends Component {
       uploadCallback,
       ariaLabel,
     } = this.props;
-    console.log(toolbar);
     const controlProps = {
       modalHandler: this.modalHandler,
       editorState,

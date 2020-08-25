@@ -6,7 +6,7 @@ export default function blockStyleFn(block: Object): string {
     return `rdw-${blockAlignment}-aligned-block`;
   }
   if (type === 'atomic') {
-    return 'atomic';
+    return 'rdw-atomic';
   }
   return '';
 }
